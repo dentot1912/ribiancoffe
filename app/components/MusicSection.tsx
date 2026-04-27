@@ -18,7 +18,7 @@ export default function MusicSection() {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_right,rgba(126,156,101,0.05)_0%,rgba(18,14,13,0)_70%)] pointer-events-none" />
       
       {/* Cinematic Film Grain */}
-      <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
+      <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none noise-texture" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         

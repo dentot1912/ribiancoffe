@@ -11,6 +11,7 @@
   --color-brand-espresso: #271c19;
   --color-brand-charcoal: #1a1a1a;
   --color-brand-leaf: #7e9c65;
+  --color-brand-forest: #1e3a2b;
 
   /* Legacy White Mode Colors for HeroSection */
   --color-ivory: #f5f3ef;
@@ -288,4 +289,18 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.noise-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.menu-pattern {
+  background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
 }

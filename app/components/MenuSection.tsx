@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Leaf, Sparkles } from "lucide-react";
 
 const menuCategories = [
   {
@@ -59,113 +59,134 @@ export default function MenuSection() {
   }, [activeCategory]);
 
   return (
-    <section id="menu" className="relative py-32 md:py-48 bg-ivory overflow-hidden">
-      {/* Decorative subtle noise texture */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#1a1a1a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+    <section id="menu" className="relative py-32 md:py-56 bg-white overflow-hidden">
+      
+      {/* Background Watermark - Editorial Style */}
+      <div className="absolute top-0 left-[-5%] h-full flex items-center pointer-events-none select-none z-0">
+        <h2 className="vertical-text text-[12rem] md:text-[20rem] font-bold text-charcoal/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
+          The Offerings
+        </h2>
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16 lg:mb-20">
-          <div className="animate-fade-up flex items-center gap-4 mb-6">
-            <span className="w-12 h-[1px] bg-coffee-light/50" />
-            <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-coffee-light">
-              Interactive Menu
-            </span>
-            <span className="w-12 h-[1px] bg-coffee-light/50" />
+        {/* Section Header: Magazine Inspired */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 lg:mb-32 gap-12">
+          <div className="flex flex-col">
+            <div className="animate-fade-up flex items-center gap-4 mb-8">
+              <span className="w-12 h-[2px] bg-brand-forest" />
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-forest">
+                Special Menu
+              </span>
+            </div>
+            <h2 className="animate-fade-up delay-100 font-[family-name:var(--font-playfair)] text-6xl md:text-8xl font-bold text-charcoal tracking-tighter leading-[0.8] mb-4">
+              Curated <br /> 
+              <span className="italic font-normal text-brand-forest">Selection</span>
+            </h2>
           </div>
-          <h2 className="animate-fade-up delay-100 font-[family-name:var(--font-playfair)] text-5xl sm:text-7xl lg:text-[7.5rem] font-bold text-charcoal tracking-tighter leading-[0.8] mb-12">
-            The Palette
-          </h2>
 
-          {/* Filter Bar */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-12 animate-fade-up delay-200 mt-8">
+          {/* Magazine-style filter pills */}
+          <div className="animate-fade-up delay-200 flex flex-wrap gap-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`relative py-2 px-1 text-[11px] md:text-xs font-bold tracking-[0.3em] uppercase transition-all duration-500 group ${
-                  activeCategory === cat.id ? "text-coffee" : "text-muted hover:text-charcoal"
+                className={`px-6 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 border ${
+                  activeCategory === cat.id 
+                    ? "bg-brand-forest text-white border-brand-forest shadow-xl" 
+                    : "bg-transparent text-charcoal border-charcoal/10 hover:border-brand-forest"
                 }`}
               >
                 {cat.label}
-                <span className={`absolute bottom-0 left-0 h-[2px] bg-coffee transition-all duration-500 ${
-                  activeCategory === cat.id ? "w-full" : "w-0 group-hover:w-full"
-                }`} />
               </button>
             ))}
           </div>
         </div>
 
-        {/* Gallery Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-24 min-h-[700px]">
+        {/* Dynamic Editorial Grid */}
+        <div 
+          key={activeCategory}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24"
+        >
           {filteredItems.map((item, idx) => (
             <div 
               key={item.name}
-              className="group flex flex-col gap-6 animate-[revealItem_0.6s_cubic-bezier(0.16,1,0.3,1)_forwards]"
-              style={{ 
-                animationDelay: `${(idx % 6) * 80}ms` 
-              }}
+              className="group flex flex-col gap-8 animate-fade-up"
+              style={{ transitionDelay: `${(idx % 6) * 100}ms` }}
             >
-              {/* Item Card Container */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-warm-100/50 border border-warm-200/30 group-hover:shadow-[0_40px_80px_rgba(92,61,46,0.12)] transition-all duration-1000 group-hover:-translate-y-2">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  className="object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2s] ease-out-expo"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+              {/* Item Visual Container: Editorial Mask */}
+              <div className="relative aspect-square">
                 
-                {/* Elegant Overlay Label */}
-                <div className="absolute top-6 left-6 right-6 flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  <span className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-bold tracking-widest text-coffee uppercase shadow-sm">
-                    {item.categoryId}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-sm">
-                    <span className="text-[10px] font-bold text-charcoal">0{idx + 1}</span>
+                {/* Floating Decorative Leaf Accent */}
+                {idx % 2 === 0 && (
+                  <div className="absolute -top-6 -right-6 z-20 animate-float opacity-0 group-hover:opacity-100 transition-opacity duration-1000" style={{ animationDelay: `${idx * 0.5}s` }}>
+                    <Leaf className="w-12 h-12 text-brand-forest/20 fill-brand-forest/10 -rotate-45" />
+                  </div>
+                )}
+                
+                <div className="relative w-full h-full rounded-[3rem] rounded-tr-[8rem] overflow-hidden bg-ivory shadow-[0_20px_60px_rgba(0,0,0,0.04)] group-hover:shadow-[0_40px_80px_rgba(30,58,43,0.12)] transition-all duration-1000 group-hover:-translate-y-2">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-[3s] ease-out-expo"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  
+                  {/* Label Overlay */}
+                  <div className="absolute bottom-6 left-6 flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[10px] font-bold text-brand-forest shadow-sm">
+                      {idx + 1}
+                    </span>
+                    <span className="bg-brand-forest/90 backdrop-blur-md px-3 py-1 rounded-full text-[8px] font-bold tracking-widest text-white uppercase">
+                      {item.categoryId}
+                    </span>
                   </div>
                 </div>
 
-                {/* Bottom Gradient for text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                {/* Aesthetic Detail Dots */}
+                <div className="absolute -bottom-4 -left-4 w-12 h-12 opacity-10 pointer-events-none group-hover:opacity-30 transition-opacity" style={{ backgroundImage: 'radial-gradient(var(--color-brand-forest) 2px, transparent 2px)', backgroundSize: '10px 10px' }} />
               </div>
 
-              {/* Textual Details */}
-              <div className="flex flex-col text-center px-4">
-                <div className="flex flex-col gap-2 mb-3">
-                  <h4 className="font-bold text-xl sm:text-2xl text-charcoal group-hover:text-coffee transition-colors duration-500">
+              {/* Textual Identity: Editorial Style */}
+              <div className="flex flex-col px-2">
+                <div className="flex justify-between items-start gap-4 mb-4">
+                  <h4 className="font-bold text-2xl text-charcoal group-hover:text-brand-forest transition-colors duration-500 leading-tight">
                     {item.name}
                   </h4>
-                  <p className="text-[11px] sm:text-xs leading-relaxed text-muted tracking-wide max-w-[280px] mx-auto italic">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-[1px] w-8 bg-border" />
-                  <span className="font-[family-name:var(--font-playfair)] font-bold text-2xl text-charcoal">
+                  <span className="font-[family-name:var(--font-playfair)] font-bold text-2xl text-brand-forest">
                     {item.price}
                   </span>
-                  <div className="h-[1px] w-8 bg-border" />
                 </div>
+                <p className="text-xs leading-relaxed text-muted tracking-wide italic max-w-[280px]">
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Cinematic Minimalist CTA */}
-        <div className="mt-32 lg:mt-48 flex flex-col items-center justify-center gap-12 animate-fade-up">
-           <div className="flex flex-col items-center gap-4">
-             <span className="text-[9px] font-bold tracking-[0.5em] uppercase text-warm-400">Discover More</span>
-             <h4 className="font-[family-name:var(--font-playfair)] text-2xl italic text-charcoal">Visit Our Space</h4>
+        {/* Bottom CTA Section */}
+        <div className="mt-32 lg:mt-48 flex flex-col items-center">
+           <div className="w-full h-[1px] bg-charcoal/5 relative mb-20">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-10">
+                <Leaf className="w-6 h-6 text-brand-forest opacity-20" />
+              </div>
            </div>
-           <a
-              href="#contact"
-              className="group relative flex items-center justify-center w-24 h-24 rounded-full border border-border overflow-hidden transition-all duration-1000"
-            >
-              <div className="absolute inset-0 bg-coffee scale-0 group-hover:scale-100 transition-transform duration-700 rounded-full" />
-              <ArrowDown className="relative z-10 text-warm-400 group-hover:text-white transition-colors duration-700 w-8 h-8" strokeWidth={1} />
-            </a>
+           
+           <div className="flex flex-col items-center gap-12 text-center">
+              <div className="space-y-4">
+                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-muted">Ready to Taste?</span>
+                <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl italic text-charcoal">Experience the RiBian standard</h3>
+              </div>
+              <a
+                href="#contact"
+                className="group relative flex items-center justify-center w-24 h-24 rounded-full border border-charcoal/10 overflow-hidden transition-all duration-1000 hover:border-brand-forest"
+              >
+                <div className="absolute inset-0 bg-brand-forest scale-0 group-hover:scale-100 transition-transform duration-700 rounded-full" />
+                <ArrowDown className="relative z-10 text-brand-forest group-hover:text-white transition-colors duration-700 w-8 h-8" strokeWidth={1} />
+              </a>
+           </div>
         </div>
 
       </div>

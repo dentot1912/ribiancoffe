@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Heart, ArrowUp } from "lucide-react";
 
@@ -15,9 +16,12 @@ const socialLinks = [
   { label: "TikTok", href: "#" },
   { label: "WhatsApp", href: "#" },
 ];
-
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer className="relative pt-32 pb-8 bg-ivory overflow-hidden">

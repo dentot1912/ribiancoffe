@@ -6,7 +6,7 @@ import { Globe, Send, Camera, ArrowRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative py-32 md:py-48 bg-ivory overflow-hidden">
+    <section id="contact" className="relative py-32 md:py-48 bg-white overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
