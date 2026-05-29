@@ -97,7 +97,7 @@ export default function Footer() {
         {/* Bottom Section: Legal & Back to Top */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-charcoal/5 gap-8">
           <p className="text-[10px] font-medium text-muted tracking-widest uppercase flex items-center gap-2">
-            © {currentYear} RIBIAN. ALL RIGHTS RESERVED. MADE WITH <Heart className="w-3 h-3 text-coffee fill-coffee" /> IN INDONESIA.
+            © {currentYear} RIBIAN. ALL RIGHTS RESERVED.
           </p>
           <a 
             href="#home" 
